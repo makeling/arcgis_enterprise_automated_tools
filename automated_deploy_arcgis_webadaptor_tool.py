@@ -34,9 +34,7 @@ def main(argv=None):
             list_str = value
             instancename = list_str.split(',')
 
-    print len(instancename)
-
-
+    # print len(instancename)
 
     wa_path, java_home, tomcat_home = unzip_tar_package(tomcat_path,java_jdk_path, webadaptor_path)
 
