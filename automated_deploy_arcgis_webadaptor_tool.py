@@ -19,7 +19,7 @@ def main(argv=None):
         print('[required] -j : Java jdk path, eg: -j /home/software/jdk-8u151-linux-x64.tar.gz')
         print('[required] -t : Tomcat path, eg: -t /home/software/apache-tomcat-8.0.47.tar.gz')
         print('[required] -w: ArcGIS Web Adaptor path, eg: -w /home/software/Web_Adaptor_Java_Linux_106_161911.tar.gz')
-        print("[optional] -i: ArcGIS Web Adaptor instancelist, eg: -i 'portal', 'server'")
+        print("[optional] -i: ArcGIS Web Adaptor instancelist, eg: -i 'portal','server'")
         print('\n')
         return
 
@@ -33,6 +33,8 @@ def main(argv=None):
         elif op == "-i":
             list_str = value
             instancename = list_str.split(',')
+
+    print len(instancename)
 
 
 
@@ -58,9 +60,9 @@ def main(argv=None):
 
     print ('start tomcat successfully!')
 
-    response = validate_install_result()
-
-    print response
+    # response = validate_install_result()
+    #
+    # print response
 
     delete_temp_space()
 
@@ -161,6 +163,7 @@ def deploy_war_to_tomcat(war_path, tomcat_path, instancename):
     else:
         for instance in instancename:
             instance = instance.strip()
+            print 'Deploying instance ' + instance + ".war"
             tomcat_war_path = os.path.join(tomcat_webapps, instance+ ".war")
             cmd = 'cp -rf ' + war_file + " " + tomcat_war_path
             commands.getoutput(cmd)
